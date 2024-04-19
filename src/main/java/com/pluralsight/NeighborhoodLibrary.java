@@ -65,8 +65,7 @@ public class NeighborhoodLibrary {
                 checkOutBook();
                 break;
             case 'x':
-                displayHomeScreen();
-                break;
+                return;
             default:
                 System.out.println("Invalid command.");
         }
@@ -92,7 +91,7 @@ public class NeighborhoodLibrary {
                 checkInBook();
                 break;
             case 'x':
-                displayHomeScreen();
+                return;
             default:
                 System.out.println("Invalid command.");
         }
