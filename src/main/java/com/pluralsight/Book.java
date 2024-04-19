@@ -41,47 +41,39 @@ public class Book {
         return isCheckedOut;
     }
 
-    //Getter for id
+    //Getter and setters
     public int getId() {
         return id;
     }
 
-    //Setter for id
     public void setId(int id) {
         this.id = id;
     }
 
-    //Getter for isbn
     public String getIsbn(){
         return isbn;
     }
 
-    //Setter for isbn
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    //Getter for title
     public String getTitle() {
         return title;
     }
 
-    //Setter for title
     public void setTitle(String title) {
         this.title = title;
     }
 
-    //setter for checked out
     public void setCheckedOut(boolean checkedOut) {
         isCheckedOut = checkedOut;
     }
 
-    //set checked out to
     public void setCheckedOutTo(String checkedOutTo) {
         this.checkedOutTo = checkedOutTo;
     }
 
-    //getter for checked out to
     public String getCheckedOutTo() {
         return checkedOutTo;
     }

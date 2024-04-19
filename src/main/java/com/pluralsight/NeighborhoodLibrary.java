@@ -12,7 +12,7 @@ public class NeighborhoodLibrary {
         inventory = new Book[20];
         //Populate the inventory with books
         for (int i = 0; i < 20; i++) {
-            inventory[i] = new Book(i + 1, "0000" + (i + 1), "Book: part " + (i+1));
+            inventory[i] = new Book(i + 101, "000-0-" + (i + 101), "Cool Book - part " + (i+1));
         }
     }
 
@@ -20,7 +20,9 @@ public class NeighborhoodLibrary {
     public void displayHomeScreen() {
         //Display options: show available books, show checked out books, exit
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean running = true;
+        char command;
+        while (running) {
             System.out.println("Welcome to the Neighborhood Library!");
             System.out.println("1. Show available books");
             System.out.println("2. Show checked out books");
@@ -30,15 +32,14 @@ public class NeighborhoodLibrary {
             switch (choice) {
                 case 1:
                     displayAvailableBooks();
-                    checkOutBook();
                     break;
                 case 2:
                     displayCheckedOutBooks();
-                    checkInBook();
                     break;
                 case 3:
                     System.out.println("Exiting...");
-                    return;
+                    running = false;
+                    break;
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -47,23 +48,53 @@ public class NeighborhoodLibrary {
 
     //Method to display available books
     public void displayAvailableBooks() {
+        Scanner scanner = new Scanner(System.in);
+        char command;
         System.out.println("Available Books:");
         for (Book book : inventory) {
             if (!book.isCheckedOut()) {
-                System.out.println("ID: " + book.getId() + ", ISBN: " + book.getIsbn() + ", Title: " + book.getTitle());
+                System.out.println("ID: " + book.getId() + ", Title: " + book.getTitle());
             }
+        }
+        //Press c to check out a book and x to return to home screen
+        System.out.println("(c) Check out book");
+        System.out.println("(x) Return to home screen");
+        command = scanner.next().charAt(0);
+        switch (command) {
+            case 'c':
+                checkOutBook();
+                break;
+            case 'x':
+                displayHomeScreen();
+                break;
+            default:
+                System.out.println("Invalid command.");
         }
     }
 
     //Method to display checked out books
     public void displayCheckedOutBooks() {
+        Scanner scanner = new Scanner(System.in);
+        char command;
         //Iterate through inventory and display books that are checked out
         System.out.println("Checked out Books:");
         for (Book book : inventory) {
             if (book.isCheckedOut()) {
-                System.out.println("ID: " + book.getId() + ", ISBN: " + book.getIsbn() + ", Title: " + book.getTitle() + ", Checked Out To: " + book.getCheckedOutTo());
+                System.out.println("ID: " + book.getId() + ", Title: " + book.getTitle() + ", Checked Out To: " + book.getCheckedOutTo());
             }
-
+        }
+        //Press c to check in a book and x to return to home screen
+        System.out.println("(c) Check in book");
+        System.out.println("(x) Return to home screen");
+        command = scanner.next().charAt(0);
+        switch (command) {
+            case 'c':
+                checkInBook();
+                break;
+            case 'x':
+                displayHomeScreen();
+            default:
+                System.out.println("Invalid command.");
         }
     }
 
